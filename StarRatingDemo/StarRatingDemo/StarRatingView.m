@@ -16,7 +16,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.opaque = NO;
-        self.backgroundColor = [UIColor orangeColor];
+        
         _maxrating = rating;
         //*(self.bounds.size.width-frame.size.height-kLabelAllowance);
         self.animated = animated;
@@ -28,12 +28,13 @@
             NSLog(@"setting rating");
         }
         if (label) {
-            self.kLabelAllowance = 30.0f;
+            self.kLabelAllowance = 50.0f;
             self.label = [[UILabel alloc]initWithFrame:CGRectMake(self.bounds.size.width-kLabelAllowance , 0,kLabelAllowance, frame.size.height)];
-            self.label.font = [UIFont systemFontOfSize:11.0f];
+            
+            self.label.font = [UIFont systemFontOfSize:18.0f];
             self.label.text = [NSString stringWithFormat:@"%d%%",rating];
             self.label.textAlignment = NSTextAlignmentRight;
-            self.label.textColor = [UIColor whiteColor];
+            self.label.textColor = [UIColor blackColor];
             self.label.backgroundColor = [UIColor clearColor];
             [self addSubview:self.label];
         }else{

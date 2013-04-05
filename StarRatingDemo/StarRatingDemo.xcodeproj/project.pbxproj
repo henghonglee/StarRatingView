@@ -21,6 +21,7 @@
 		EFF51044170E6B64007FE026 /* StarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF51043170E6B64007FE026 /* StarRatingView.m */; };
 		EFF51047170E6BE2007FE026 /* 5starsgray.png in Resources */ = {isa = PBXBuildFile; fileRef = EFF51045170E6BE2007FE026 /* 5starsgray.png */; };
 		EFF51048170E6BE2007FE026 /* 5starflip.png in Resources */ = {isa = PBXBuildFile; fileRef = EFF51046170E6BE2007FE026 /* 5starflip.png */; };
+		EFF5104B170E7868007FE026 /* StarRatingViewDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF5104A170E7868007FE026 /* StarRatingViewDebug.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,8 @@
 		EFF51043170E6B64007FE026 /* StarRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarRatingView.m; sourceTree = "<group>"; };
 		EFF51045170E6BE2007FE026 /* 5starsgray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5starsgray.png; sourceTree = "<group>"; };
 		EFF51046170E6BE2007FE026 /* 5starflip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5starflip.png; sourceTree = "<group>"; };
+		EFF51049170E7868007FE026 /* StarRatingViewDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarRatingViewDebug.h; sourceTree = "<group>"; };
+		EFF5104A170E7868007FE026 /* StarRatingViewDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarRatingViewDebug.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +100,8 @@
 				EFF5103B170E6B4A007FE026 /* ViewController.m */,
 				EFF51042170E6B64007FE026 /* StarRatingView.h */,
 				EFF51043170E6B64007FE026 /* StarRatingView.m */,
+				EFF51049170E7868007FE026 /* StarRatingViewDebug.h */,
+				EFF5104A170E7868007FE026 /* StarRatingViewDebug.m */,
 				EFF51045170E6BE2007FE026 /* 5starsgray.png */,
 				EFF51046170E6BE2007FE026 /* 5starflip.png */,
 				EFF51026170E6B4A007FE026 /* Supporting Files */,
@@ -190,6 +195,7 @@
 				EFF51030170E6B4A007FE026 /* AppDelegate.m in Sources */,
 				EFF5103C170E6B4A007FE026 /* ViewController.m in Sources */,
 				EFF51044170E6B64007FE026 /* StarRatingView.m in Sources */,
+				EFF5104B170E7868007FE026 /* StarRatingViewDebug.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +318,7 @@
 				EFF51041170E6B4A007FE026 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
