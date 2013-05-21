@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EF41BB34174B0BCF007A8003 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF41BB33174B0BCF007A8003 /* QuartzCore.framework */; };
 		EFF51020170E6B4A007FE026 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF5101F170E6B4A007FE026 /* UIKit.framework */; };
 		EFF51022170E6B4A007FE026 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF51021170E6B4A007FE026 /* Foundation.framework */; };
 		EFF51024170E6B4A007FE026 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFF51023170E6B4A007FE026 /* CoreGraphics.framework */; };
@@ -20,11 +21,10 @@
 		EFF5103C170E6B4A007FE026 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF5103B170E6B4A007FE026 /* ViewController.m */; };
 		EFF51044170E6B64007FE026 /* StarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF51043170E6B64007FE026 /* StarRatingView.m */; };
 		EFF51047170E6BE2007FE026 /* 5starsgray.png in Resources */ = {isa = PBXBuildFile; fileRef = EFF51045170E6BE2007FE026 /* 5starsgray.png */; };
-		EFF51048170E6BE2007FE026 /* 5starflip.png in Resources */ = {isa = PBXBuildFile; fileRef = EFF51046170E6BE2007FE026 /* 5starflip.png */; };
-		EFF5104B170E7868007FE026 /* StarRatingViewDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = EFF5104A170E7868007FE026 /* StarRatingViewDebug.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EF41BB33174B0BCF007A8003 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		EFF5101C170E6B4A007FE026 /* StarRatingDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarRatingDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EFF5101F170E6B4A007FE026 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EFF51021170E6B4A007FE026 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -44,9 +44,6 @@
 		EFF51042170E6B64007FE026 /* StarRatingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarRatingView.h; sourceTree = "<group>"; };
 		EFF51043170E6B64007FE026 /* StarRatingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarRatingView.m; sourceTree = "<group>"; };
 		EFF51045170E6BE2007FE026 /* 5starsgray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5starsgray.png; sourceTree = "<group>"; };
-		EFF51046170E6BE2007FE026 /* 5starflip.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5starflip.png; sourceTree = "<group>"; };
-		EFF51049170E7868007FE026 /* StarRatingViewDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StarRatingViewDebug.h; sourceTree = "<group>"; };
-		EFF5104A170E7868007FE026 /* StarRatingViewDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StarRatingViewDebug.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF41BB34174B0BCF007A8003 /* QuartzCore.framework in Frameworks */,
 				EFF51020170E6B4A007FE026 /* UIKit.framework in Frameworks */,
 				EFF51022170E6B4A007FE026 /* Foundation.framework in Frameworks */,
 				EFF51024170E6B4A007FE026 /* CoreGraphics.framework in Frameworks */,
@@ -83,6 +81,7 @@
 		EFF5101E170E6B4A007FE026 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EF41BB33174B0BCF007A8003 /* QuartzCore.framework */,
 				EFF5101F170E6B4A007FE026 /* UIKit.framework */,
 				EFF51021170E6B4A007FE026 /* Foundation.framework */,
 				EFF51023170E6B4A007FE026 /* CoreGraphics.framework */,
@@ -100,10 +99,7 @@
 				EFF5103B170E6B4A007FE026 /* ViewController.m */,
 				EFF51042170E6B64007FE026 /* StarRatingView.h */,
 				EFF51043170E6B64007FE026 /* StarRatingView.m */,
-				EFF51049170E7868007FE026 /* StarRatingViewDebug.h */,
-				EFF5104A170E7868007FE026 /* StarRatingViewDebug.m */,
 				EFF51045170E6BE2007FE026 /* 5starsgray.png */,
-				EFF51046170E6BE2007FE026 /* 5starflip.png */,
 				EFF51026170E6B4A007FE026 /* Supporting Files */,
 			);
 			path = StarRatingDemo;
@@ -180,7 +176,6 @@
 				EFF51036170E6B4A007FE026 /* Default-568h@2x.png in Resources */,
 				EFF51039170E6B4A007FE026 /* MainStoryboard.storyboard in Resources */,
 				EFF51047170E6BE2007FE026 /* 5starsgray.png in Resources */,
-				EFF51048170E6BE2007FE026 /* 5starflip.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,7 +190,6 @@
 				EFF51030170E6B4A007FE026 /* AppDelegate.m in Sources */,
 				EFF5103C170E6B4A007FE026 /* ViewController.m in Sources */,
 				EFF51044170E6B64007FE026 /* StarRatingView.m in Sources */,
-				EFF5104B170E7868007FE026 /* StarRatingViewDebug.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

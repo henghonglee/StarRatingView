@@ -5,12 +5,26 @@
 //  Created by HengHong on 5/4/13.
 //  Copyright (c) 2013 Fixel Labs Pte. Ltd. All rights reserved.
 //
-
+#import <QuartzCore/QuartzCore.h>
 #import "StarRatingView.h"
 #define kLeftPadding 5.0f
+
+@interface StarRatingView()
+@property (nonatomic) int userRating;
+@property (nonatomic) int maxrating;
+@property (nonatomic) int rating;
+@property (nonatomic) BOOL animated;
+@property (nonatomic) float kLabelAllowance;
+@property (nonatomic,strong) NSTimer* timer;
+@property (nonatomic,strong) UILabel* label;
+@property (nonatomic,strong) CALayer* tintLayer;
+
+@end
+
 @implementation StarRatingView
 @synthesize timer;
 @synthesize kLabelAllowance;
+@synthesize tintLayer;
 - (id)initWithFrame:(CGRect)frame andRating:(int)rating withLabel:(BOOL)label animated:(BOOL)animated
 {
     self = [super initWithFrame:frame];
@@ -18,15 +32,9 @@
         self.opaque = NO;
         
         _maxrating = rating;
-        //*(self.bounds.size.width-frame.size.height-kLabelAllowance);
         self.animated = animated;
-        if (self.animated) {
-            _rating = 0;
-            timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(increaseRating) userInfo:nil repeats:YES];
-        }else{
-            _rating = _maxrating;
-            NSLog(@"setting rating");
-        }
+        
+        
         if (label) {
             self.kLabelAllowance = 50.0f;
             self.label = [[UILabel alloc]initWithFrame:CGRectMake(self.bounds.size.width-kLabelAllowance , 0,kLabelAllowance, frame.size.height)];
@@ -41,6 +49,40 @@
             self.kLabelAllowance = 0.0f;
         }
         
+        
+        
+        CGRect newrect = CGRectMake(0, 0, self.bounds.size.width-kLabelAllowance, self.bounds.size.height);
+        
+        
+        CALayer* starBackground = [CALayer layer];
+        starBackground.contents = (__bridge id)([UIImage imageNamed:@"5starsgray"].CGImage);
+        starBackground.frame = newrect;
+        [self.layer addSublayer:starBackground];
+        
+        tintLayer = [CALayer layer];
+        tintLayer.frame = CGRectMake(0, 0, 0, self.bounds.size.height);
+        if (self.userRating >=20.0f) {
+            [tintLayer setBackgroundColor:[UIColor greenColor].CGColor];
+        }else{
+            [tintLayer setBackgroundColor:[UIColor yellowColor].CGColor];
+        }
+        
+        [self.layer addSublayer:tintLayer];
+        CALayer* starMask = [CALayer layer];
+        starMask.contents = (__bridge id)([UIImage imageNamed:@"5starsgray"].CGImage);
+        starMask.frame = newrect;
+        [self.layer addSublayer:starMask];
+        tintLayer.mask = starMask;
+        
+        
+        if (self.animated) {
+            _rating = 0;
+            timer = [NSTimer scheduledTimerWithTimeInterval:0.01 target:self selector:@selector(increaseRating) userInfo:nil repeats:YES];
+            [self performSelector:@selector(ratingDidChange) withObject:nil afterDelay:0.1];
+        }else{
+            _rating = _maxrating;
+            NSLog(@"setting rating");
+        }
     }
     return self;
 }
@@ -54,35 +96,28 @@
         if (self.label) {
             self.label.text = [NSString stringWithFormat:@"%d%%",self.rating];
         }
-        [self setNeedsDisplay];
     }else{
         [timer invalidate];
     }
 }
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    UIImage* image = [UIImage imageNamed:@"5starsgray.png"];
-    CGRect newrect = CGRectMake(kLeftPadding, 0, self.bounds.size.width-kLabelAllowance-kLeftPadding, self.bounds.size.height);
-    [image drawInRect:newrect];
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextClipToMask(context, newrect, [UIImage imageNamed:@"5starflip.png"].CGImage);
-    float barWitdhPercentage = (_rating/100.0f) *  (self.bounds.size.width-kLabelAllowance-kLeftPadding);
 
-    CGContextClipToRect(context, CGRectMake(kLeftPadding, 0, MIN(self.bounds.size.width,barWitdhPercentage), self.bounds.size.height));
-    CGContextSetBlendMode(context, kCGBlendModeNormal);
-    if (self.userRating < 0.2f) {
-        [[UIColor yellowColor] setFill];
+
+-(void)ratingDidChange
+{
+    if (self.userRating < 20.0f) {
+        [self.tintLayer setBackgroundColor:[UIColor yellowColor].CGColor];
+        float barWitdhPercentage = (_maxrating/100.0f) *  (self.bounds.size.width-kLabelAllowance);
+        self.tintLayer.frame = CGRectMake(0, 0, barWitdhPercentage, self.frame.size.height);
     }else{
-        [[UIColor greenColor] setFill];
+        [self.tintLayer setBackgroundColor:[UIColor greenColor].CGColor];
+        float barWitdhPercentage = (_rating/100.0f) *  (self.bounds.size.width-kLabelAllowance);
+        self.tintLayer.frame = CGRectMake(0, 0, barWitdhPercentage, self.frame.size.height);
     }
-    CGContextFillRect(context, newrect);
+    
 }
 
-
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event{
-    
+
     if (CGRectContainsPoint(self.bounds, [[[touches allObjects]lastObject] locationInView:self])) {
         
         float xpos = [[[touches allObjects]lastObject] locationInView:self].x - kLeftPadding;
@@ -107,7 +142,7 @@
                 self.label.text = [NSString stringWithFormat:@"%d%%",self.rating];
             }
         }
-        [self setNeedsDisplay];
+        [self ratingDidChange];
         
     }
 }
@@ -119,19 +154,22 @@
         float xpos = [[[touches allObjects]lastObject] locationInView:self].x - kLeftPadding;
         int star = MIN(4,xpos/((self.bounds.size.width-kLabelAllowance-kLeftPadding)/5.0f));
         if (star == 0) {
+            if (self.userRating == 20.0f) {
+                self.userRating = 0.0f;
+                self.rating = self.maxrating;
+            }else{
                 self.userRating = (star+1)*20.0f;
                 self.rating = self.userRating;
+            }
         }else{
             self.userRating = (star+1)*20.0f;
             self.rating = self.userRating;
         }
-        
+        [self ratingDidChange];
         
         if (self.label) {
             self.label.text = [NSString stringWithFormat:@"%d%%",self.rating];
         }
-        
-        [self setNeedsDisplay];
         
     }
 }
